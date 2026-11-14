@@ -1,0 +1,9 @@
+{
+  "name": "jdmfsm",
+  "version": "1.0.0",
+  "mcpServers": {
+    "jdmfsm": {
+      "httpUrl": "https://jdmfsm.info/mcp"
+    }
+  }
+}

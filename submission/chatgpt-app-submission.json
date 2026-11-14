@@ -1,0 +1,128 @@
+{
+  "$schema": "https://developers.openai.com/apps-sdk/schemas/chatgpt-app-submission.v1.json",
+  "schema_version": 1,
+  "app_info": {
+    "display_name": "JDM Factory Service Manuals",
+    "subtitle": "Car repair manuals and DTCs",
+    "description": "Finds the factory service manual for a car (Nissan, Toyota, Lexus, Honda, Mazda, Subaru, Mitsubishi, Suzuki, Daihatsu, Isuzu, Hyundai, Jeep) by model, year, chassis code or VIN, looks up trouble codes, searches a manual for a part or job, and returns the pages, wiring diagrams and illustrations with a link to each page.",
+    "category": "EDUCATION"
+  },
+  "tools": {
+    "find_manuals": {
+      "annotations": {"readOnlyHint": true, "openWorldHint": false, "destructiveHint": false},
+      "justifications": {
+        "read_only_justification": "Only looks up matching manuals in the library's index and returns their titles, types and links.",
+        "open_world_justification": "Does not post, send or change anything outside the library; it reads its own index.",
+        "destructive_justification": "Does not delete, overwrite or change any data."
+      }
+    },
+    "get_contents": {
+      "annotations": {"readOnlyHint": true, "openWorldHint": false, "destructiveHint": false},
+      "justifications": {
+        "read_only_justification": "Only returns the stored table of contents of a manual.",
+        "open_world_justification": "Does not post, send or change anything outside the library; it reads its own index.",
+        "destructive_justification": "Does not delete, overwrite or change any data."
+      }
+    },
+    "search": {
+      "annotations": {"readOnlyHint": true, "openWorldHint": false, "destructiveHint": false},
+      "justifications": {
+        "read_only_justification": "Only searches one manual's index for a part or job and returns the matching pages.",
+        "open_world_justification": "Does not post, send or change anything outside the library; it reads its own index.",
+        "destructive_justification": "Does not delete, overwrite or change any data."
+      }
+    },
+    "lookup_dtc": {
+      "annotations": {"readOnlyHint": true, "openWorldHint": false, "destructiveHint": false},
+      "justifications": {
+        "read_only_justification": "Only finds the pages of one manual that cover a trouble code.",
+        "open_world_justification": "Does not post, send or change anything outside the library; it reads its own index.",
+        "destructive_justification": "Does not delete, overwrite or change any data."
+      }
+    },
+    "read_pages": {
+      "annotations": {"readOnlyHint": true, "openWorldHint": false, "destructiveHint": false},
+      "justifications": {
+        "read_only_justification": "Only reads the text of up to a few pages of a published manual.",
+        "open_world_justification": "Does not post, send or change anything outside the library; it reads the library's own files.",
+        "destructive_justification": "Does not delete, overwrite or change any data."
+      }
+    },
+    "page_image": {
+      "annotations": {"readOnlyHint": true, "openWorldHint": false, "destructiveHint": false},
+      "justifications": {
+        "read_only_justification": "Only renders one page of a published manual as an image or a one-page PDF.",
+        "open_world_justification": "Does not post, send or change anything outside the library; it reads the library's own files.",
+        "destructive_justification": "Does not delete, overwrite or change any data."
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "description": "Explain a trouble code for a specific car.",
+      "user_prompt": "What does P0340 mean on my 2004 Nissan Sentra 1.8?",
+      "file_attachment_urls": null,
+      "tools_triggered": "find_manuals, lookup_dtc, read_pages",
+      "expected_output": "Finds the 2004 B15 Sentra service manual, returns the DTC P0340 camshaft position sensor pages for the QG18DE engine with the fault description and diagnosis, and links to the pages.",
+      "expected_output_url": "https://jdmfsm.info/Auto/Japan/Nissan/B13%20B14%20B15%20B16%20B17%20N14%20Sentra%20Sunny%20200SX/2004%20B15%20Sentra/ec.pdf#page=259"
+    },
+    {
+      "description": "Find a repair procedure in a large manual.",
+      "user_prompt": "How do I replace the timing chain on a 2014 Mazda3 2.0?",
+      "file_attachment_urls": null,
+      "tools_triggered": "find_manuals, search, read_pages",
+      "expected_output": "Finds the 2014 Mazda3 (BM) service manual and the Timing Chain, Chain Tensioner procedure for the SKYACTIV-G 2.0, summarises the steps and links to the pages.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Show a wiring diagram as an image.",
+      "user_prompt": "Show me the fuel pump wiring diagram for a 2010 Toyota Hilux (KUN16).",
+      "file_attachment_urls": null,
+      "tools_triggered": "find_manuals, search, page_image",
+      "expected_output": "Finds the 2005-2014 Hilux wiring diagram manual, locates the fuel pump circuit and returns the diagram page as an image with its link.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Identify the manual from a chassis code.",
+      "user_prompt": "Which service manual covers a Nissan S15 Silvia?",
+      "file_attachment_urls": null,
+      "tools_triggered": "find_manuals",
+      "expected_output": "Lists the S15 Silvia manuals in the library with their years, types and links.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Browse a manual's contents.",
+      "user_prompt": "What sections are in the 2004 Nissan Sentra service manual?",
+      "file_attachment_urls": null,
+      "tools_triggered": "find_manuals, get_contents",
+      "expected_output": "Returns the list of the manual's sections (engine control, engine mechanical, brakes and so on) with links.",
+      "expected_output_url": null
+    }
+  ],
+  "negative_test_cases": [
+    {
+      "description": "Do not trigger for buying a car.",
+      "user_prompt": "Should I buy a used Toyota Corolla or a Honda Civic?",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked: this asks for buying advice, not for a manual.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not trigger for prices or parts shopping.",
+      "user_prompt": "Where can I buy cheap brake pads for my Subaru Impreza?",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked: the library has no prices or shops.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not trigger for unrelated writing.",
+      "user_prompt": "Write a short poem about driving at night.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "The app should not be invoked because the request is outside its supported workflows.",
+      "expected_output_url": null
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "jdmfsm": {
+      "type": "http",
+      "url": "https://jdmfsm.info/mcp"
+    }
+  }
+}

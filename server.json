@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.balexandrov/jdmfsm",
+  "title": "JDM Factory Service Manuals",
+  "description": "2,000+ factory service manuals for Japanese cars and Jeep: DTCs, repair pages, wiring diagrams.",
+  "version": "1.0.0",
+  "websiteUrl": "https://jdmfsm.info/Auto/mcp.html",
+  "repository": {
+    "url": "https://github.com/balexandrov/jdmfsm-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://jdmfsm.info/mcp"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "jdmfsm",
+  "owner": {
+    "name": "jdmfsm.info",
+    "email": "jdmfsm1@gmail.com",
+    "url": "https://jdmfsm.info"
+  },
+  "description": "Factory service manuals from jdmfsm.info for Claude.",
+  "plugins": [
+    {
+      "name": "jdmfsm",
+      "source": "./plugins/jdmfsm",
+      "description": "Factory service manuals for Japanese cars and Jeep: find the manual, look up DTCs, read the pages and wiring diagrams.",
+      "category": "reference",
+      "homepage": "https://jdmfsm.info/Auto/mcp.html"
+    }
+  ]
+}

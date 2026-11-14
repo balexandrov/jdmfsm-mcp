@@ -1,0 +1,109 @@
+{
+  "name": "jdmfsm",
+  "version": "1.0.0",
+  "description": "Search 2,000+ factory service manuals for Japanese cars and Jeep: find the manual for a car by model, year, chassis code or VIN, look up trouble codes (DTCs), and read the exact pages, wiring diagrams and illustrations for a repair.",
+  "author": {
+    "name": "jdmfsm.info",
+    "email": "jdmfsm1@gmail.com",
+    "url": "https://jdmfsm.info"
+  },
+  "homepage": "https://jdmfsm.info/Auto/search.html",
+  "keywords": [
+    "service manual",
+    "repair manual",
+    "workshop manual",
+    "DTC",
+    "trouble code",
+    "wiring diagram",
+    "car repair",
+    "Nissan",
+    "Toyota",
+    "Honda",
+    "Mazda",
+    "Subaru",
+    "Mitsubishi",
+    "Jeep"
+  ],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "JDM Factory Service Manuals",
+    "shortDescription": "Car repair manuals and DTCs",
+    "longDescription": "Look things up in the factory service manuals a dealer workshop uses. The library at jdmfsm.info holds more than 2,000 manuals for Nissan, Infiniti, Toyota, Lexus, Honda, Mazda, Subaru, Mitsubishi, Suzuki, Daihatsu, Isuzu, Hyundai and Jeep.\n\nTell it the car (model and year, a chassis code like S15 or BM, or the VIN) and it finds the right manual: service manual, wiring diagrams or body repair manual. Then look up a trouble code such as P0340 to get the fault, its causes and the diagnosis pages, or search for a job or a part (timing chain, camshaft position sensor, brake bleeding) and read the pages themselves. Wiring diagrams, connector views and illustrations come back as page images.\n\nEvery answer links to the exact page of the manual, so you can open it and check it against your car.",
+    "developerName": "jdmfsm.info",
+    "category": "Education & Research",
+    "capabilities": [],
+    "websiteURL": "https://jdmfsm.info",
+    "supportURL": "https://jdmfsm.info/Auto/support.html",
+    "privacyPolicyURL": "https://jdmfsm.info/Auto/privacy.html",
+    "termsOfServiceURL": "https://jdmfsm.info/Auto/terms.html",
+    "defaultPrompt": [
+      "What does P0340 mean on my 2004 Nissan Sentra 1.8?",
+      "Timing chain replacement on a 2014 Mazda3 2.0",
+      "Wiring diagram for the fuel pump on a Toyota Hilux"
+    ],
+    "brandColor": "#1F6E8C",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png"
+  },
+  "extensions": {
+    "com.openai": {
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Explain a trouble code for a specific car.",
+              "prompt": "What does P0340 mean on my 2004 Nissan Sentra 1.8?",
+              "tools_triggered": "find_manuals, lookup_dtc, read_pages",
+              "expected_behavior": "Finds the 2004 B15 Sentra service manual, returns the DTC P0340 camshaft position sensor pages for the QG18DE engine with the fault description and diagnosis, and links to the pages.",
+              "file_attachment_urls": [],
+              "expected_output_url": "https://jdmfsm.info/Auto/Japan/Nissan/B13%20B14%20B15%20B16%20B17%20N14%20Sentra%20Sunny%20200SX/2004%20B15%20Sentra/ec.pdf#page=259"
+            },
+            {
+              "description": "Find a repair procedure in a large manual.",
+              "prompt": "How do I replace the timing chain on a 2014 Mazda3 2.0?",
+              "tools_triggered": "find_manuals, search, read_pages",
+              "expected_behavior": "Finds the 2014 Mazda3 (BM) service manual and the Timing Chain, Chain Tensioner procedure for the SKYACTIV-G 2.0, summarises the steps and links to the pages.",
+              "file_attachment_urls": []
+            },
+            {
+              "description": "Show a wiring diagram as an image.",
+              "prompt": "Show me the fuel pump wiring diagram for a 2010 Toyota Hilux (KUN16).",
+              "tools_triggered": "find_manuals, search, page_image",
+              "expected_behavior": "Finds the 2005-2014 Hilux wiring diagram manual, locates the fuel pump circuit and returns the diagram page as an image with its link.",
+              "file_attachment_urls": []
+            },
+            {
+              "description": "Identify the manual from a chassis code.",
+              "prompt": "Which service manual covers a Nissan S15 Silvia?",
+              "tools_triggered": "find_manuals",
+              "expected_behavior": "Lists the S15 Silvia manuals in the library with their years, types and links.",
+              "file_attachment_urls": []
+            },
+            {
+              "description": "Browse a manual's contents.",
+              "prompt": "What sections are in the 2004 Nissan Sentra service manual?",
+              "tools_triggered": "find_manuals, get_contents",
+              "expected_behavior": "Returns the list of the manual's sections (engine control, engine mechanical, brakes and so on) with links.",
+              "file_attachment_urls": []
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not trigger for buying a car.",
+              "prompt": "Should I buy a used Toyota Corolla or a Honda Civic?"
+            },
+            {
+              "description": "Do not trigger for prices or parts shopping.",
+              "prompt": "Where can I buy cheap brake pads for my Subaru Impreza?"
+            },
+            {
+              "description": "Do not trigger for unrelated writing.",
+              "prompt": "Write a short poem about driving at night."
+            }
+          ]
+        },
+        "commerce": false
+      }
+    }
+  }
+}

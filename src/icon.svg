@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#1b2430"/>
+  <!-- open manual -->
+  <path d="M96 150 C150 128 210 132 252 160 L252 380 C210 352 150 348 96 370 Z" fill="#fbfbf9"/>
+  <path d="M416 150 C362 128 302 132 260 160 L260 380 C302 352 362 348 416 370 Z" fill="#e9eef2"/>
+  <g stroke="#1f6e8c" stroke-width="10" stroke-linecap="round">
+    <line x1="128" y1="196" x2="222" y2="190"/>
+    <line x1="128" y1="234" x2="222" y2="228"/>
+    <line x1="128" y1="272" x2="200" y2="267"/>
+  </g>
+  <!-- wrench -->
+  <g transform="rotate(-40 338 262)">
+    <rect x="326" y="212" width="24" height="120" rx="12" fill="#bc3a28"/>
+    <circle cx="338" cy="204" r="34" fill="#bc3a28"/>
+    <rect x="326" y="164" width="24" height="40" fill="#e9eef2"/>
+  </g>
+</svg>
