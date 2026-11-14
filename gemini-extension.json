@@ -1,6 +1,7 @@
 {
   "name": "jdmfsm",
   "version": "1.0.0",
+  "description": "2,000+ factory service manuals for Japanese cars and Jeep: trouble codes, repair procedures and wiring diagrams, with a link to every page.",
   "mcpServers": {
     "jdmfsm": {
       "httpUrl": "https://jdmfsm.info/mcp"
