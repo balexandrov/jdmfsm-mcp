@@ -37,7 +37,14 @@ or job in it, show the page and link it. It needs the server connected (above).
 |---|---|
 | **Claude** (claude.ai, desktop) | Download [jdmfsm-skill.zip](https://github.com/balexandrov/jdmfsm-mcp/releases/latest/download/jdmfsm-skill.zip), then Settings → Capabilities → Skills → Upload skill. |
 | **Claude Code** | included in the plugin above. |
-| **Other skill-aware agents** | unzip it into the agent's skills folder (`jdmfsm/SKILL.md`). |
+| **Claude Code, Codex and other agents** | ask the agent: *Install the jdmfsm skill from https://github.com/balexandrov/jdmfsm-mcp* |
+
+**Agent, installing it:** download
+`https://github.com/balexandrov/jdmfsm-mcp/releases/latest/download/jdmfsm-skill.zip` and unzip it
+into your user skills folder, so that `jdmfsm/SKILL.md` sits directly in it:
+Claude Code `~/.claude/skills/`; Codex and other agents, the folder they load user `SKILL.md`
+skills from. Then check that the jdmfsm MCP server is connected (`https://jdmfsm.info/mcp`,
+see "Add it" above) and add it if it is not; the skill needs it. The skill is loaded in a new session.
 
 ## Ask
 
