@@ -20,13 +20,27 @@ not here.
 | App | How |
 |---|---|
 | **Claude** (claude.ai, desktop, mobile) | Settings → Connectors → Add custom connector, paste the address. |
-| **Claude Code** | `/plugin marketplace add balexandrov/jdmfsm-mcp` then `/plugin install jdmfsm@jdmfsm` — or just `claude mcp add --transport http jdmfsm https://jdmfsm.info/mcp` |
+| **Claude Code** | `/plugin marketplace add balexandrov/jdmfsm-mcp` then `/plugin install jdmfsm@jdmfsm` (server and skill) — or the server only: `claude mcp add --transport http jdmfsm https://jdmfsm.info/mcp` |
 | **ChatGPT** | Settings → Apps & Connectors → Advanced → Developer mode, then Create, paste the address, no authentication. |
 | **Codex CLI** | in `~/.codex/config.toml`: `[mcp_servers.jdmfsm]` with `url = "https://jdmfsm.info/mcp"` |
 | **Gemini CLI** | `gemini extensions install https://github.com/balexandrov/jdmfsm-mcp` |
 | **VS Code** | `code --add-mcp '{"name":"jdmfsm","type":"http","url":"https://jdmfsm.info/mcp"}'` |
 | **Cursor** | in `~/.cursor/mcp.json`: `{"mcpServers": {"jdmfsm": {"url": "https://jdmfsm.info/mcp"}}}` |
 | **Anything else** | add a remote (streamable HTTP) MCP server with the address. |
+
+ChatGPT asks "Allow file materialization?" when it shows a manual page or wiring diagram: allow it,
+that is the page image.
+
+## The skill (optional)
+
+A skill teaches the assistant the routine: pin down the car, pick the right manual, look up the code
+or job in it, show the page and link it. It needs the server connected (above).
+
+| App | How |
+|---|---|
+| **Claude** (claude.ai, desktop) | Download [jdmfsm-skill.zip](https://github.com/balexandrov/jdmfsm-mcp/releases/latest/download/jdmfsm-skill.zip), then Settings → Capabilities → Skills → Upload skill. |
+| **Claude Code** | included in the plugin above. |
+| **Other skill-aware agents** | unzip it into the agent's skills folder (`jdmfsm/SKILL.md`). |
 
 ## Ask
 
@@ -55,11 +69,12 @@ All tools are read-only and change nothing.
 | Path | For |
 |---|---|
 | `.claude-plugin/marketplace.json` | the Claude Code plugin marketplace |
-| `plugins/jdmfsm/` | the plugin: `.claude-plugin/plugin.json` (Claude), `.codex-plugin/plugin.json` (ChatGPT / Codex), the shared `.mcp.json` and icons |
+| `plugins/jdmfsm/` | the plugin: `.claude-plugin/plugin.json` (Claude), `.codex-plugin/plugin.json` (ChatGPT / Codex), the shared `.mcp.json`, the skill `skills/jdmfsm/` and icons |
 | `gemini-extension.json` | the Gemini CLI extension |
 | `server.json` | the listing in the [MCP Registry](https://registry.modelcontextprotocol.io) |
 | `submission/` | material for the directory reviews (test cases, tool justifications) |
 | `build_chatgpt_zip.py` | builds `dist/jdmfsm-plugin.zip`, the ChatGPT upload |
+| `build_skill_zip.py` | builds `dist/jdmfsm-skill.zip`, the skill, attached to each [release](https://github.com/balexandrov/jdmfsm-mcp/releases) |
 
 ## Links
 

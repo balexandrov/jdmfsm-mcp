@@ -7,7 +7,7 @@ import pathlib
 import zipfile
 
 ROOT = pathlib.Path(__file__).resolve().parent
-SKILL = ROOT / "skills" / "jdmfsm"
+SKILL = ROOT / "plugins" / "jdmfsm" / "skills" / "jdmfsm"
 OUT = ROOT / "dist" / "jdmfsm-skill.zip"
 
 OUT.parent.mkdir(exist_ok=True)
