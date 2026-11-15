@@ -28,9 +28,6 @@ not here.
 | **Cursor** | in `~/.cursor/mcp.json`: `{"mcpServers": {"jdmfsm": {"url": "https://jdmfsm.info/mcp"}}}` |
 | **Anything else** | add a remote (streamable HTTP) MCP server with the address. |
 
-ChatGPT asks "Allow file materialization?" when it shows a manual page or wiring diagram: allow it,
-that is the page image.
-
 ## The skill (optional)
 
 A skill teaches the assistant the routine: pin down the car, pick the right manual, look up the code
